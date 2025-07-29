@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_groq import ChatGroq
 
-# 1. Definisikan PROMPT_TEMPLATE dengan format JSON yang di-escape
+# 1. Define PROMPT TEMPLATE with escaped JSON format
 PROMPT_TEMPLATE = """
 Anda adalah asisten cerdas yang ahli dalam menganalisis dan merangkum data medis.
 Berdasarkan teks hasil OCR dari surat dokter berikut, ekstrak informasi kunci dan sajikan dalam format JSON yang valid.
@@ -31,10 +31,10 @@ Struktur JSON yang wajib diikuti adalah sebagai berikut:
 
 """
 
-# 2. Inisialisasi model dari Groq dengan model yang valid
+# 2. Initialize the model from Groq with a valid model
 LLM_MODEL_NAME = "llama3-70b-8192" 
 
-# 3. Buat fungsi logic yang menggunakan LangChain dengan benar
+# 3. Create a logic function that uses LangChain correctly
 async def get_structured_summary(image_text: str) -> dict:
     """
     Mengambil teks mentah OCR, memprosesnya melalui chain LLM, dan mengembalikan dictionary.
@@ -45,7 +45,7 @@ async def get_structured_summary(image_text: str) -> dict:
     prompt = PromptTemplate(
         template=PROMPT_TEMPLATE,
         input_variables=["text"],
-        # Kita tidak lagi butuh partial_variables karena contoh format sudah ada di template
+        # We no longer need partial_variables because the example format is already in the template
     )
     
     model = ChatGroq(
